@@ -63,6 +63,7 @@ public class ListNode {
         System.out.println("Before: ");
         ListNode.print(head);
 
+        /* 这个方法不是很好，自己想出来的
         ListNode temp;
         ListNode c = head;
 
@@ -75,6 +76,20 @@ public class ListNode {
 
         System.out.println("After:");
         ListNode.print(head);
+        */
+
+        // 这个是王铮的答案，感觉也更好理解一点
+        // https://github.com/wangzheng0822/algo/blob/master/java/07_linkedlist/LinkedListAlgo.java
+        ListNode cur = head, pre = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+
+        System.out.println("After:");
+        ListNode.print(pre);
     }
 
     /**

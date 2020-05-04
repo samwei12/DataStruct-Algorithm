@@ -13,7 +13,8 @@ public class Solution485 {
      * Input: [1,1,0,1,1,1]
      * Output: 3
      * Explanation: The first two digits or the last three digits are consecutive 1s.
-     *     The maximum number of consecutive 1s is 3.
+     * The maximum number of consecutive 1s is 3.
+     *
      * @param nums 二进制数组，只有 0，1
      * @return 最长的连续 1 的个数
      */
@@ -21,11 +22,12 @@ public class Solution485 {
         if (nums == null) {
             return 0;
         }
-        return method1(nums);
+        return method2(nums);
     }
 
     /**
      * 常规解法，思路：直接进行遍历，
+     *
      * @param nums 二进制数组，只有 0，1
      * @return 最长的连续 1 的个数
      */
@@ -41,6 +43,27 @@ public class Solution485 {
             }
         }
         maxConsecutive = Math.max(maxConsecutive, count);
+        return maxConsecutive;
+    }
+
+    /**
+     * 滑动窗口法，思路
+     * https://leetcode-cn.com/problems/max-consecutive-ones/solution/java-485-zui-da-lian-xu-1de-ge-shu-hua-dong
+     * -chuang/
+     *
+     * @param nums 二进制数组，只有 0，1
+     * @return 最长的连续 1 的个数
+     */
+    private int method2(int[] nums) {
+        int maxConsecutive = 0;
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            if (nums[right++] == 0) {
+                maxConsecutive = Math.max(right - left - 1, maxConsecutive);
+                left = right;
+            }
+        }
+        maxConsecutive = Math.max(right - left, maxConsecutive);
         return maxConsecutive;
     }
 }

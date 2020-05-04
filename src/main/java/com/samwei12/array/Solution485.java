@@ -27,6 +27,8 @@ public class Solution485 {
 
     /**
      * 常规解法，思路：直接进行遍历，
+     * 时间复杂度 O(n)
+     * 空间复杂度 O(1)
      *
      * @param nums 二进制数组，只有 0，1
      * @return 最长的连续 1 的个数
